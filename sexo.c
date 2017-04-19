@@ -15,12 +15,11 @@ Tree* cria_arvore_filho(Tree* pai, Tree* mae){
 Tree* sexo(Tree* pai,Tree* mae, int id)
 {
    Tree* filho = cria_arvore_filho(pai,mae);
-   Tree* mutante = cria_arvore_filho(pai,pai);
-   gerando_filho(pai,mae,filho, mutante);
+   Tree* mutante = cria_arvore_ente(99999);
+   gerando_filho(pai,mae,filho,mutante);
    filho->info->pai = pai->info->id;
    filho->info->mae = mae->info->id;
    filho->info->id = id;
-   filho->info->mut = pai->info->mut + mae->info->mut;
    return filho;
 }
 /*retorna qual genetica eh domianntes */
@@ -49,8 +48,9 @@ void atribui_duplo_dominante(Tree* pai, Tree* mae, Tree* filho, Tree* mutante){
         atribui_genetica(filho->right->info, dominante(pai));
     }
     else if(r==2){
-      atribui_genetica(filho->left->info, dominante(pai));
-      atribui_genetica(filho->right->info, dominante(pai));
+      mutante->info->mut = 1;
+      atribui_genetica(filho->left->info, dominante(mutante));
+      atribui_genetica(filho->right->info, dominante(mutante));
     }
 }
 
@@ -102,7 +102,6 @@ void imprime_pessoa(Tree *mangueira){
         if(strcmp(mangueira->info->carac,"ente")==0)
         {
           printf("\n-Identificacao: %d--Pai: %d--Mae: %d-----\n", mangueira->info->id,mangueira->info->pai,mangueira->info->mae);
-          if(mangueira->info->mut >= 1) printf("MUTANTE\n");
         }
         if(verifica_ultimo_nivel(mangueira)){
             printf("%s: ", mangueira->info->carac);

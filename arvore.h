@@ -8,6 +8,7 @@ struct genetica
     int id;
     char carac[20]; /*  caracteristica a ser colocada; */
     int dom; /* dominancia do gene , 1 == dorminante e 0 == recessivo;*/
+    int mut=0;
 };
 typedef struct genetica Genetica;
 
