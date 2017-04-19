@@ -15,10 +15,12 @@ Tree* cria_arvore_filho(Tree* pai, Tree* mae){
 Tree* sexo(Tree* pai,Tree* mae, int id)
 {
    Tree* filho = cria_arvore_filho(pai,mae);
-   gerando_filho(pai,mae,filho);
+   Tree* mutante = cria_arvore_filho(pai,pai);
+   gerando_filho(pai,mae,filho, mutante);
    filho->info->pai = pai->info->id;
    filho->info->mae = mae->info->id;
    filho->info->id = id;
+   filho->info->mut = pai->info->mut + mae->info->mut;
    return filho;
 }
 /*retorna qual genetica eh domianntes */
@@ -31,19 +33,24 @@ Genetica* dominante(Tree* folha){
 void atribui_genetica(Genetica* recebe, Genetica* alvo ){
     strcpy(recebe->carac, alvo->carac);
     recebe->dom = alvo->dom;
+    recebe->mut = alvo->mut;
 }
 /* pega os genes  dos pais e atribui no filho */
-void atribui_duplo_dominante(Tree* pai, Tree* mae, Tree* filho){
+void atribui_duplo_dominante(Tree* pai, Tree* mae, Tree* filho, Tree* mutante){
     srand(rand()%9999*time(NULL));
-    int r = rand()%2;
+    int r = rand()%3;
     /* se for o pai esquerda */
     if(r ==0){
       atribui_genetica(filho->left->info, dominante(pai));
       atribui_genetica(filho->right->info, dominante(mae));
     }
-    else{
+    else if(r==1){
         atribui_genetica(filho->left->info, dominante(mae));
         atribui_genetica(filho->right->info, dominante(pai));
+    }
+    else if(r==2){
+      atribui_genetica(filho->left->info, dominante(pai));
+      atribui_genetica(filho->right->info, dominante(pai));
     }
 }
 
@@ -93,7 +100,10 @@ void imprime_pessoa(Tree *mangueira){
     if(tree_empty(mangueira) == 0)
     {
         if(strcmp(mangueira->info->carac,"ente")==0)
+        {
           printf("\n-Identificacao: %d--Pai: %d--Mae: %d-----\n", mangueira->info->id,mangueira->info->pai,mangueira->info->mae);
+          if(mangueira->info->mut >= 1) printf("MUTANTE\n");
+        }
         if(verifica_ultimo_nivel(mangueira)){
             printf("%s: ", mangueira->info->carac);
             imprime_dominante(dominante(mangueira));
@@ -101,22 +111,19 @@ void imprime_pessoa(Tree *mangueira){
         imprime_pessoa(mangueira->left);
         imprime_pessoa(mangueira->right);
     }
-
+    
 
 }
 
 /* faz o pecorrimento das arvores juntas e vai alterando os genes quando chegar no ultimo nivel */
 /* por esta em conjunto , apenas precisa chegar uma arvore se chegou ao fim */
-void gerando_filho(Tree* pai, Tree* mae, Tree* filho)
+void gerando_filho(Tree* pai, Tree* mae, Tree* filho, Tree* mutante)
 {
      if(tree_empty(pai) == 0)
     {
        if(verifica_ultimo_nivel(pai))
-         atribui_duplo_dominante(pai,mae,filho);
-        gerando_filho(pai->left,mae->left,filho->left);
-        gerando_filho(pai->right,mae->right,filho->right);
+         atribui_duplo_dominante(pai,mae,filho, mutante);
+        gerando_filho(pai->left,mae->left,filho->left, mutante->left);
+        gerando_filho(pai->right,mae->right,filho->right, mutante->right);
     }
 }
-
-
-
