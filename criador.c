@@ -16,7 +16,6 @@ void imprime_genetica(Genetica* g){
 void imprime_dominante(Genetica* g){
   printf("%s", g->carac);
   printf("\n");
-  if(g->mut == 1) printf("MUTANTE\n");
 }
 /* cria uma raiz/folha inicial para arvore */
 Genetica* cria_folha(char* conteudo, int dominancia){

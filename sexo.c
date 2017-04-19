@@ -16,6 +16,7 @@ Tree* sexo(Tree* pai,Tree* mae, int id)
 {
    Tree* filho = cria_arvore_filho(pai,mae);
    Tree* mutante = cria_arvore_ente(99999);
+   mutante->info->mut = 1;
    gerando_filho(pai,mae,filho,mutante);
    filho->info->pai = pai->info->id;
    filho->info->mae = mae->info->id;
@@ -24,12 +25,16 @@ Tree* sexo(Tree* pai,Tree* mae, int id)
 }
 /*retorna qual genetica eh domianntes */
 Genetica* dominante(Tree* folha){
-   if(folha->left->info->dom >= folha->right->info->dom)
+  if(folha->info->mut == 1  && folha->left!=0){
+    folha->left->info->mut = 1;
+    folha->right->info->mut = 1;
+  }
+  if(folha->left->info->dom >= folha->right->info->dom)
     return folha->left->info;
-   return folha->right->info;
+  return folha->right->info;
 }
 
-void atribui_genetica(Genetica* recebe, Genetica* alvo ){
+void atribui_genetica(Genetica* recebe, Genetica* alvo){
     strcpy(recebe->carac, alvo->carac);
     recebe->dom = alvo->dom;
     recebe->mut = alvo->mut;
@@ -102,6 +107,7 @@ void imprime_pessoa(Tree *mangueira){
         if(strcmp(mangueira->info->carac,"ente")==0)
         {
           printf("\n-Identificacao: %d--Pai: %d--Mae: %d-----\n", mangueira->info->id,mangueira->info->pai,mangueira->info->mae);
+          if(mangueira->info->mut==1) printf("MUTANTE\n");
         }
         if(verifica_ultimo_nivel(mangueira)){
             printf("%s: ", mangueira->info->carac);
