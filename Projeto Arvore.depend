@@ -1,0 +1,54 @@
+# depslib dependency file v1.0
+1436135872 source:c:\users\caio\desktop\unb\estrutura de dados\trab2\projeto arvore\arvore.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"criador.h"
+	"sexo.h"
+	"arvore.h"
+
+1435705317 c:\users\caio\desktop\unb\estrutura de dados\trab2\projeto arvore\fila.h
+	"arvore.h"
+
+1436134282 c:\users\caio\desktop\unb\estrutura de dados\trab2\projeto arvore\arvore.h
+
+1436134622 source:c:\users\caio\desktop\unb\estrutura de dados\trab2\projeto arvore\criador.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"arvore.h"
+	"criador.h"
+	"sexo.h"
+
+1435705468 source:c:\users\caio\desktop\unb\estrutura de dados\trab2\projeto arvore\fila.c
+	<stdio.h>
+	<stdlib.h>
+	"arvore.h"
+	"fila.h"
+
+1436136012 source:c:\users\caio\desktop\unb\estrutura de dados\trab2\projeto arvore\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"arvore.h"
+	"criador.h"
+	"sexo.h"
+
+1436134826 c:\users\caio\desktop\unb\estrutura de dados\trab2\projeto arvore\criador.h
+	<time.h>
+	"arvore.h"
+
+1436134790 c:\users\caio\desktop\unb\estrutura de dados\trab2\projeto arvore\sexo.h
+	"arvore.h"
+
+1436135852 source:c:\users\caio\desktop\unb\estrutura de dados\trab2\projeto arvore\sexo.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"arvore.h"
+	"criador.h"
+	"sexo.h"
+
