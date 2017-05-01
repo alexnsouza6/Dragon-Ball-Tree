@@ -6,41 +6,42 @@ int main(){
     int img;
     Ponto p;
 
-    AbreJanela(400, 500, "Montagem");
+    AbreJanela(300, 450, "Montagem");
     PintarFundo(0, 0, 0);
 
-    img = AbreImagem("/personagem/raca/personagem_mutante.png");
+    img = AbreImagem("personagem/raca/personagem_mutante.png");
 
-    p.x = -75;
-    p.y = -90;
-    CriaRetangulo(150,180,p);
+    p.x = -60;
+    p.y = -150;
+    CriaRetangulo(142,295,p);
     Pintar(255, 255, 255);
     AssociaImagem(img);
 
 
     img = AbreImagem("personagem/olho_formato/personagem_0005s_0001_olho-redondo.png");
-    p.x = -12;
-    p.y = 70;
-    CriaRetangulo(20, 16, p);
+    p.x = -15;
+    p.y = 75;
+    CriaRetangulo(33,25, p);
     Pintar(255, 255, 255);
     AssociaImagem(img);
 
 
     img = AbreImagem("personagem/olho_cor/personagem_0004s_0000_olho-azul.png");
-    p.x = -8;
-    p.y = 73;
-    CriaRetangulo(13, 6, p);
+    p.x = -10;
+    p.y = 75;
+    CriaRetangulo(21,6, p);
     Pintar(255, 255, 255);
     AssociaImagem(img);
 
 
-    img = AbreImagem("personagem/Camisas/personagem_0000s_0000_camisa.png");
+    img = AbreImagem("personagem/Camisas/camisa.png");
 
-    p.x = -50;
-    p.y = -10;
-    CriaTriangulo(50, 50, p);
+    p.x = -45;
+    p.y = 10;
+    CriaRetangulo(112,89, p);
     Pintar(255, 255, 255);
     AssociaImagem(img);
+
 /*
     p.x = -90;
     p.y = -40;
